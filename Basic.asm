@@ -46,20 +46,20 @@
     may23 DW 9100
     ivamay23 DD ?
    
-    msg1 byte "Junio 2022 facturado: 15300  IVA: %d",0Ah,0
-    msg2 byte "Julio 2022 facturado: 10800  IVA: %d",0Ah,0
-    msg3 byte "Agosto 2022 facturado: 5000  IVA: %d",0Ah,0
-    msg4 byte "Septiembre 2022 facturado: 500  IVA: %d",0Ah,0
-    msg5 byte "Octubre 2022 facturado: 6060  IVA: %d",0Ah,0
-    msg6 byte "Noviembre 2022 facturadao: 7098  IVA: %d",0Ah,0
+    msg1 byte "Junio 2022 facturado: 1300  IVA: %d",0Ah,0
+    msg2 byte "Julio 2022 facturado: 800  IVA: %d",0Ah,0
+    msg3 byte "Agosto 2022 facturado: 522  IVA: %d",0Ah,0
+    msg4 byte "Septiembre 2022 facturado: 200  IVA: %d",0Ah,0
+    msg5 byte "Octubre 2022 facturado: 600  IVA: %d",0Ah,0
+    msg6 byte "Noviembre 2022 facturadao: 798  IVA: %d",0Ah,0
     msg7 byte "Diciembre 2022 facturadao: 5000  IVA: %d",0Ah,0
-    msg8 byte "Enero 2023 facturadao: 10600  IVA: %d",0Ah,0
-    msg9 byte "Febrero 2023 facturadao: 11060  IVA: %d",0Ah,0
-    msg10 byte "Marzo 2023 facturadao: 12000  IVA: %d",0Ah,0
-    msg11 byte "Abril 2023 facturadao: 15100  IVA: %d",0Ah,0
+    msg8 byte "Enero 2023 facturadao: 850  IVA: %d",0Ah,0
+    msg9 byte "Febrero 2023 facturadao: 1160  IVA: %d",0Ah,0
+    msg10 byte "Marzo 2023 facturadao: 1200  IVA: %d",0Ah,0
+    msg11 byte "Abril 2023 facturadao: 5100  IVA: %d",0Ah,0
     msg12 byte "Mayo 2023 facturadao: 9100  IVA: %d",0Ah,0
 
-    msgT13 byte "Monto total de los 12 mese es de: Q",0Ah,0  ; total del monto
+    msgT13 byte "Monto total de los 12 meses es de: Q%d",0Ah,0  ; total del monto
     msgC14 byte "Se le sugiere mantenerse en pequeno contribuyente" ,0Ah,0; Si el monto es menor a Q150,000.00 
     msgG15 byte "Se le sugiere cambiar a IVA General",0Ah,0 ; Si el monto se excede los Q150,000.00 
     
@@ -275,6 +275,30 @@ main proc
     add ax,may23
     mov total,eax
 
+    push dword ptr [total]
+    push offset msgT13
+    call printf
+    push 0
+    
+    ; Comparar el monto con Q150,000
+    mov eax, total
+    cmp eax, 150000
+
+    ; Saltar a "esMayor" si el valor es mayor que 150,000
+    jg esMayor
+
+    ; Imprimir mensaje para "pequeño contribuyente"
+    push offset msgC14
+    call printf
+    add esp, 7
+
+    jmp salir
+
+esMayor:
+    ; Imprimir mensaje para "IVA General"
+    push offset msgG15
+    call printf
+    add esp, 7
 
 
 
