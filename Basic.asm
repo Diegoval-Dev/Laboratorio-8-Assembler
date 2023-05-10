@@ -44,18 +44,18 @@
     ivamay23 DD ?
     IvaT DW 20
     total DD 0 
-    msg1 byte "Junio 2022 facturado:  IVA: %d", 0AH, 0
-    msg2 byte "Julio 2022 facturado:  IVA: %d", 0AH, 0
-    msg3 byte "Agosto 2022 facturado:  IVA: %d", 0AH, 0
-    msg4 byte "Septiembre 2022 facturado:  IVA: %d", 0AH, 0
-    msg5 byte "Octubre 2022 facturado:  IVA: %d", 0AH, 0
-    msg6 byte "Noviembre 2022 facturadao:  IVA: %d", 0AH, 0
-    msg7 byte "Diciembre 2022 facturadao:  IVA: %d", 0AH, 0
-    msg8 byte "Enero 2023 facturadao:  IVA: %d", 0AH, 0
-    msg9 byte "Febrero 2023 facturadao:  IVA: %d", 0AH, 0
-    msg10 byte "Marzo 2023 facturadao:  IVA: %d", 0AH, 0
-    msg11 byte "Abril 2023 facturadao:  IVA: %d", 0AH, 0
-    msg12 byte "Mayo 2023 facturadao:  IVA: %d", 0AH, 0
+    msg1 byte "Junio 2022 facturado: 15300  IVA: %d", 0AH, 0
+    msg2 byte "Julio 2022 facturado: 10800  IVA: %d", 0AH, 0
+    msg3 byte "Agosto 2022 facturado: 5000  IVA: %d", 0AH, 0
+    msg4 byte "Septiembre 2022 facturado: 500  IVA: %d", 0AH, 0
+    msg5 byte "Octubre 2022 facturado: 6060  IVA: %d", 0AH, 0
+    msg6 byte "Noviembre 2022 facturadao: 7098  IVA: %d", 0AH, 0
+    msg7 byte "Diciembre 2022 facturadao: 5000  IVA: %d", 0AH, 0
+    msg8 byte "Enero 2023 facturadao: 10600  IVA: %d", 0AH, 0
+    msg9 byte "Febrero 2023 facturadao: 11060  IVA: %d", 0AH, 0
+    msg10 byte "Marzo 2023 facturadao: 12000  IVA: %d", 0AH, 0
+    msg11 byte "Abril 2023 facturadao: 15100  IVA: %d", 0AH, 0
+    msg12 byte "Mayo 2023 facturadao: 9100  IVA: %d", 0AH, 0
 
 .code
 includelib libucrt.lib
@@ -214,7 +214,7 @@ main proc
     push offset msg11
     call printf
 
-     mov eax,0
+    mov eax,0
     mov ebx,0
 
     mov ax, may23
