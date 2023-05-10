@@ -57,6 +57,11 @@
     msg11 byte "Abril 2023 facturadao: 15100  IVA: %d", 0AH, 0
     msg12 byte "Mayo 2023 facturadao: 9100  IVA: %d", 0AH, 0
 
+    msgT12 byte "Facturación total de los 12 mese de Iva es de: %d", 0AH, 0  ; total del monto
+    msgC13 byte "Se le sugiere mantenerse en pequeño contribuyente" ; Si el monto es menor a Q150,000.00 
+    msgG14 byte "Se le sugiere cambiar a IVA General" ; Si el monto se excede los Q150,000.00 
+    
+
 .code
 includelib libucrt.lib
 includelib legacy_stdio_definitions.lib
@@ -69,6 +74,8 @@ extrn exit:near
 
 public main
 main proc
+
+; Junio 2022 ---------------------------------
 
     mov eax,0
     mov ebx,0
@@ -83,6 +90,8 @@ main proc
     push offset msg1
     call printf
 
+; Julio 2022 ---------------------------------
+
     mov eax,0
     mov ebx,0
 
@@ -95,6 +104,8 @@ main proc
     push dword ptr [ivajul22]
     push offset msg2
     call printf
+
+; Agosto 2022 ---------------------------------
 
     mov eax,0
     mov ebx,0
@@ -109,6 +120,8 @@ main proc
     push offset msg3
     call printf
 
+; Septiembre 2022 ---------------------------------
+
     mov eax,0
     mov ebx,0
 
@@ -122,6 +135,8 @@ main proc
     push offset msg4
     call printf
 
+; Octubre 2022 ---------------------------------
+
     mov eax,0
     mov ebx,0
 
@@ -134,6 +149,8 @@ main proc
     push dword ptr [ivaoct22]
     push offset msg5
     call printf
+     
+; Noviembre 2022 ---------------------------------
 
     mov eax,0
     mov ebx,0
@@ -148,7 +165,7 @@ main proc
     push offset msg6
     call printf
 
-
+; Diciembre 2022 ---------------------------------
     mov eax,0
     mov ebx,0
 
@@ -161,6 +178,8 @@ main proc
     push dword ptr [ivadic22]
     push offset msg7
     call printf
+    
+; Enero 2023 ---------------------------------
 
     mov eax,0
     mov ebx,0
@@ -175,6 +194,8 @@ main proc
     push offset msg8
     call printf
 
+; Febrero 2023 ---------------------------------
+
     mov eax,0
     mov ebx,0
 
@@ -188,6 +209,8 @@ main proc
     push offset msg9
     call printf
 
+; Marzo 2023 ---------------------------------
+    
     mov eax,0
     mov ebx,0
 
@@ -201,6 +224,8 @@ main proc
     push offset msg10
     call printf
 
+; Abril 2023 ---------------------------------
+
     mov eax,0
     mov ebx,0
 
@@ -213,6 +238,8 @@ main proc
     push dword ptr [ivaabr23]
     push offset msg11
     call printf
+
+; Mayo 2023 ---------------------------------
 
     mov eax,0
     mov ebx,0
@@ -228,6 +255,7 @@ main proc
     call printf
 
 
+    salir:
 
     push 0
     call exit
